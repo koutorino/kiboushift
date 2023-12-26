@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+body {
+  margin: 24px;
+  box-sizing: border-box;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+h1 {
+  border: solid 2px black;
+  background: rgb(155, 153, 153);
+  width: 500px;
+  margin: 0 auto;
+  border: solid 3px black;
+  border-bottom: none;
+  border-radius: 16px 16px 0 0;
+  text-align: center;
+  padding: 16px;
+}
+
+div.form {
+  width: 500px;
+  margin: 0 auto;
+  border: solid 3px black;
+  border-radius: 0 0 16px 16px;
+  text-align: center;
+  padding: 16px;
+
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.name {
+  margin: 16px 0;
+  font-size: 24px;
+
+}
+
+.pass {
+  margin: 16px 0;
+  font-size: 24px;
+}
+
+.ed {
+  display: block;
+  margin-left: 400px;
+}
+
+button > a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+.main-form {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  margin: 16px auto;
+}
+
+.result {
+  flex: 1;
+  background: yellowgreen;
+  border: 4px, solid, greenyellow; 
+  border-radius: 16px 0  0 16px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: black;
+}
+
+.form {
+  flex: 1;
+  border: 1px solid black; 
+  border-radius: 0 16px 16px 0;
+}
+
+.rad {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  font-size: 24px;
+  margin: 16px;
+}
+
+
+
+.container {
+  max-width: auto;
+  height: 60px;
+  margin: 60px auto;
+  padding: 0 50px;
+}
+
+
+.noUi-horizontal .noUi-handle {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  top: -8px;
+  background: gray;
+}
