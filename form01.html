@@ -18,7 +18,7 @@
     <div class="user-form">
       <div class="name">
         <p>名前</p>
-        <select>
+        <select id="search-id">
           <option>---名前を選択してください---</option>
           <option>太郎</option>
           <option>次郎</option>
@@ -28,21 +28,25 @@
           <option>ムツゴロウ</option>
         </select>
       </div>
+      <!-- <label>ユーザーID<input id="search-id" type="text"></label> -->
+      
       <label class="pass">
-        <p>パスワード</p> <input type="password" placeholder="職員番号を入力してください" size="24">
+        <p>パスワード</p> <input id="search-password" type="password" placeholder="職員番号を入力してください" size="24">
       </label>
+
+      <div class="button">
+        <button>ログイン</button>
+      </div>
+
+      <p id="search-result"></p>
     </div>
 
-      <input type="submit">
-      <button class="ed"><a href="file:///c%3A/Users/kk8ta/Desktop/%E3%83%89%E3%83%83%E3%83%88%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/lesseon%20folder/form05.html">職員編集</a></button>
+
+      <button class="ed" id="edit">職員編集</button>
 
   </div>
 
-
-
-
-
-
+<script src="js/main01.js"></script>
 </body>
 
 </html>

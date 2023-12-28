@@ -1,32 +1,33 @@
 'use-strict';
 
+
 function render(num) {
   const body = document.querySelector('#siteBody');
-
+//各区切りの作成
   const mainForm = document.createElement('div');
   mainForm.className = 'main-form';
-
+//日付と時間の表示
   const result = document.createElement('div');
   result.className = 'result';
-
+//収集する月の日付と曜日の取得
   const day = new Date(2023, 11, num).getDay();
   const days = [ '日', '月', '火', '水', '木', '金', '土' ];
   const date = document.createElement('p');
   date.textContent = `12/${num} (${days[day]})`
-
+//スライダーの数値を習得
   const value = document.createElement('div');
   value.setAttribute('id', `sliderValue${num}`);
-
+//radioとスライダーをまとめたところ
   const form = document.createElement('div');
   form.className = 'form';
-
+//radioをまとめたところ
   const rad = document.createElement('div');
   rad.className = 'rad';
-
+//各radio用のlabelの作成
   const label1 = document.createElement('label');
   const label2 = document.createElement('label');
   const label3 = document.createElement('label');
-
+//各radioの作成
   const inputShu = document.createElement('input');
   inputShu.setAttribute('type', 'radio');
   inputShu.setAttribute('name', 'sel');
@@ -42,12 +43,12 @@ function render(num) {
   inputYuky.setAttribute('name', 'sel');
   inputYuky.className= 'chek3';
   inputYuky.textContent = '有給';
-
+//スライダー部分の作成
   const container = document.createElement('div');
   container.className = 'container';
   const sliderUi = document.createElement('div');
   sliderUi.setAttribute('id', `slider${num}`);
-
+//全体の要素を追加する
   body.appendChild(mainForm);
   mainForm.appendChild(result);
   result.appendChild(date);
@@ -62,7 +63,7 @@ function render(num) {
   label3.appendChild(inputYuky);
   form.appendChild(container);
   container.appendChild(sliderUi);
-
+//スライダー作成用jquery
   noUiSlider.create(sliderUi, {
     start: [8.5, 21],  // 初期の範囲値
     connect: true,    // 範囲を色付きのバーで結ぶ
@@ -88,9 +89,11 @@ function sliderValue(num) {
   const chek2 = document.querySelector('.chek2');
   const chek3 = document.querySelector('.chek3');
 
+  //スライダーを動かしたときに数値を変更する
   slider.noUiSlider.on('update', function (values) {
     valueElement.innerHTML = values.join(' - ');
 
+    //ラジオボタンを押したときに変更される設定
     chek1.addEventListener('change', () => {
       valueElement.innerHTML = '12.00 - 21.00';
     });
@@ -105,8 +108,10 @@ function sliderValue(num) {
   });
 }
 
+//当月の最終日を取得する
 const lastDate = new Date(2023, 11 + 1, 0).getDate();
 
+//当月分繰り返し、要素を作成する
 for (let i = 1; i <= lastDate; i++) {
   render(i);
   sliderValue(i)
