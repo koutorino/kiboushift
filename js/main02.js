@@ -1,6 +1,10 @@
 'use-strict';
 
+//【ようこそ○○さん】
+const Username = sessionStorage.getItem('name');
+document.querySelector('#helloName').textContent = 'ようこそ' + Username + 'さん！！'
 
+//要素の取得
 function render(num) {
   const body = document.querySelector('#siteBody');
 //各区切りの作成
@@ -82,6 +86,7 @@ function render(num) {
 
 }
 
+//スライダー部分の取得
 function sliderValue(num) {
   const slider = document.getElementById(`slider${num}`);
   const valueElement = document.getElementById(`sliderValue${num}`);
