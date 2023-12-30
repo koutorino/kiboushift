@@ -1,11 +1,8 @@
 'use-strict';
 
 //【ようこそ○○さん】
-<<<<<<< HEAD
 const Username = localStorage.getItem('name');
-=======
-const Username = sessionStorage.getItem('name');
->>>>>>> origin/main
+
 document.querySelector('#helloName').textContent = 'ようこそ' + Username + 'さん！！'
 
 //要素の取得
