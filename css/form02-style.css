@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+body {
+  text-align: center;
+}
+
 #helloName {
   text-align: center;
   font-size: 32px;
@@ -33,11 +37,9 @@
   display: flex;
   gap: 24px;
   justify-content: center;
-  font-size: 24px;
+  font-size: 15px;
   margin: 16px;
 }
-
-
 
 .container {
   max-width: auto;
@@ -46,11 +48,46 @@
   padding: 0 50px;
 }
 
-
 .noUi-horizontal .noUi-handle {
   width: 30px;
   height: 30px;
   border-radius: 100px;
   top: -8px;
   background: gray;
+}
+
+#register{
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+  width: 250px;
+}
+
+#register {
+  border: 2px solid #000;
+  border-radius: 0;
+  background: #fff;
+  -webkit-box-shadow: 4px 4px 0  #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+#register:hover {
+  -webkit-box-shadow: -4px -4px 0  #000;
+  box-shadow: -4px -4px 0 #000;
 }
