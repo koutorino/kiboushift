@@ -1,58 +1,71 @@
 'use-strict';
 
 //【ようこそ○○さん】
-const Username = sessionStorage.getItem('name');
+const Username = localStorage.getItem('name');
 document.querySelector('#helloName').textContent = 'ようこそ' + Username + 'さん！！'
 
 //要素の取得
 function render(num) {
   const body = document.querySelector('#siteBody');
-//各区切りの作成
+
+  //各区切りの作成
   const mainForm = document.createElement('div');
   mainForm.className = 'main-form';
-//日付と時間の表示
+
+  //日付と時間の表示
   const result = document.createElement('div');
   result.className = 'result';
-//収集する月の日付と曜日の取得
+
+  //収集する月の日付と曜日の取得
   const day = new Date(2023, 11, num).getDay();
-  const days = [ '日', '月', '火', '水', '木', '金', '土' ];
+  const days = ['日', '月', '火', '水', '木', '金', '土'];
   const date = document.createElement('p');
   date.textContent = `12/${num} (${days[day]})`
-//スライダーの数値を習得
+
+  //スライダーの数値を習得
   const value = document.createElement('div');
   value.setAttribute('id', `sliderValue${num}`);
-//radioとスライダーをまとめたところ
+
+  //radioとスライダーをまとめたところ
   const form = document.createElement('div');
   form.className = 'form';
-//radioをまとめたところ
+
+  //radioをまとめたところ
   const rad = document.createElement('div');
   rad.className = 'rad';
-//各radio用のlabelの作成
+
+  //各radio用のlabelの作成
   const label1 = document.createElement('label');
   const label2 = document.createElement('label');
   const label3 = document.createElement('label');
-//各radioの作成
+
+  //各radioの作成
   const inputShu = document.createElement('input');
+  const shuText = document.createElement('span')
   inputShu.setAttribute('type', 'radio');
   inputShu.setAttribute('name', 'sel');
-  inputShu.className= 'chek1';
-  inputShu.textContent = '終日';
+  inputShu.className = `chek1-${num}`;
+  shuText.textContent = '終日'
   const inputOff = document.createElement('input');
+  const offText = document.createElement('span')
   inputOff.setAttribute('type', 'radio');
   inputOff.setAttribute('name', 'sel');
-  inputOff.className= 'chek2';
-  inputOff.textContent = '休み';
+  inputOff.className = `chek2-${num}`;
+  offText.textContent = '休み';
   const inputYuky = document.createElement('input');
+  const yukyText = document.createElement('span')
   inputYuky.setAttribute('type', 'radio');
   inputYuky.setAttribute('name', 'sel');
-  inputYuky.className= 'chek3';
-  inputYuky.textContent = '有給';
-//スライダー部分の作成
+  inputYuky.className = `chek3-${num}`;
+  yukyText.textContent = '有給';
+
+  //スライダー部分の作成
   const container = document.createElement('div');
   container.className = 'container';
   const sliderUi = document.createElement('div');
   sliderUi.setAttribute('id', `slider${num}`);
-//全体の要素を追加する
+
+  //全体の要素を追加する
   body.appendChild(mainForm);
   mainForm.appendChild(result);
   result.appendChild(date);
@@ -63,11 +76,15 @@ function render(num) {
   rad.appendChild(label2);
   rad.appendChild(label3);
   label1.appendChild(inputShu);
+  label1.appendChild(shuText);
   label2.appendChild(inputOff);
+  label2.appendChild(offText);
   label3.appendChild(inputYuky);
+  label3.appendChild(yukyText);
   form.appendChild(container);
   container.appendChild(sliderUi);
-//スライダー作成用jquery
+
+  //スライダー作成用jquery
   noUiSlider.create(sliderUi, {
     start: [8.5, 21],  // 初期の範囲値
     connect: true,    // 範囲を色付きのバーで結ぶ
@@ -90,9 +107,9 @@ function render(num) {
 function sliderValue(num) {
   const slider = document.getElementById(`slider${num}`);
   const valueElement = document.getElementById(`sliderValue${num}`);
-  const chek1 = document.querySelector('.chek1');
-  const chek2 = document.querySelector('.chek2');
-  const chek3 = document.querySelector('.chek3');
+  const chek1 = document.querySelector(`.chek1-${num}`);
+  const chek2 = document.querySelector(`.chek2-${num}`);
+  const chek3 = document.querySelector(`.chek3-${num}`);
 
   //スライダーを動かしたときに数値を変更する
   slider.noUiSlider.on('update', function (values) {
@@ -113,14 +130,38 @@ function sliderValue(num) {
   });
 }
 
+//希望シフトの登録（オブジェクトに）
+let shifts = [];
+function setLocalstorage(num) {
+  const shift = document.querySelector(`#sliderValue${num}`).innerHTML;
+  shifts.push({
+    id: Username,
+    date: num,
+    result: shift,
+  });
+}
+
 //当月の最終日を取得する
 const lastDate = new Date(2023, 11 + 1, 0).getDate();
 
 //当月分繰り返し、要素を作成する
 for (let i = 1; i <= lastDate; i++) {
   render(i);
-  sliderValue(i)
+  sliderValue(i);
 }
+
+//【登録】でオブジェクトの作成・保存
+document.querySelector('#register').addEventListener('click', () => {
+  shifts = [];
+  localStorage.removeItem('shifts');
+  for (let i = 1; i <= lastDate; i++) {
+    setLocalstorage(i);
+  }
+
+  localStorage.setItem('shifts',JSON.stringify(shifts));
+});
+
+
 
 
 
