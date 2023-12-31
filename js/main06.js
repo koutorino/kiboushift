@@ -1,22 +1,37 @@
 'use-strict';
 
-
+const thTd = document.querySelector('#nameDate')
 const result = document.querySelector('#result'); 
 const shift = JSON.parse(localStorage.getItem('shifts'));
 
-shift.forEach((e) => {
-  //trの作成
-  const tr = document.createElement('tr');
-  result.appendChild(tr);
+//theadのth(名前)を作成
+const th = document.createElement('th')
+thTd.appendChild(th);
+th.textContent = '職員名';
 
-  //オブジェクトを配列に変換
-  const objArray = Object.entries(e);
-  objArray.forEach((arr) => {
-  
-  //tdの作成
-    const td = document.createElement('td');
-    td.textContent = arr[1];
-    tr.appendChild(td);
-  });
+//theadのth(日付部分)を作成
+for(let i = 0;i <= shift.length - 1; i++){
+  const th = document.createElement('th')
+  thTd.appendChild(th);
+  th.textContent = shift[i].date;
+}
 
+//trの作成
+const tr = document.createElement('tr');
+result.appendChild(tr);
+
+  //td(希望時間)のループ
+  const td = document.createElement('td');
+  td.textContent = shift[shift.length - 1].id;
+  tr.appendChild(td);
+  console.log(shift.length);
+
+shift.forEach((user) => {
+  //td(希望時間)のループ
+  const td = document.createElement('td');
+  td.textContent = user.result;
+  tr.appendChild(td);
 });
+
+
+

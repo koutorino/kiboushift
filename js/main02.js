@@ -136,7 +136,6 @@ let shifts = [];
 function setLocalstorage(num) {
   const shift = document.querySelector(`#sliderValue${num}`).innerHTML;
   shifts.push({
-    id: Username,
     date: num,
     result: shift,
   });
@@ -158,6 +157,7 @@ document.querySelector('#register').addEventListener('click', () => {
   for (let i = 1; i <= lastDate; i++) {
     setLocalstorage(i);
   }
+  shifts.push({id: Username});
 
   localStorage.setItem('shifts',JSON.stringify(shifts));
 });
