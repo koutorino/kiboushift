@@ -33,5 +33,24 @@ shift.forEach((user) => {
   tr.appendChild(td);
 });
 
+// 表の値(tdのみ)を取得して配列を作成
+const tableValue = document.querySelector('#table');
+const thValue = [];
+const tdValue = [];
 
+// 表の値(thのみ)を取得して配列を作成
+for(let col = 0; col < tableValue.rows[0].cells.length; col++) {
+    thValue.push(tableValue.rows[0].cells[col].innerHTML);
+}
+
+// 表の値(tdのみ)を取得して配列を作成
+for (let row = 1; row < tableValue.rows.length; row++) {
+  for(let col = 0; col < tableValue.rows[row].cells.length; col++) {
+    tdValue.push(tableValue.rows[row].cells[col].innerHTML);
+  }
+}
+
+//mainExcell.jsへの値を送る(Excel作成)
+array1.push(thValue);
+array1.push(tdValue);
 
