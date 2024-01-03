@@ -26,6 +26,8 @@ function render(num) {
   //スライダーの数値を習得
   const value = document.createElement('div');
   value.setAttribute('id', `sliderValue${num}`);
+  value.setAttribute('class', 'required');
+  console.log(value);
 
   //radioとスライダーをまとめたところ
   const form = document.createElement('div');
@@ -85,15 +87,20 @@ function render(num) {
   form.appendChild(container);
   container.appendChild(sliderUi);
 
+
+  let minVal = 8.5;
+  let maxVal = 21;
+  let gap = 0.5;
+
   //スライダー作成用jquery
   noUiSlider.create(sliderUi, {
-    start: [8.5, 21],  // 初期の範囲値
+    start: [0, 0],  // 初期の範囲値
     connect: true,    // 範囲を色付きのバーで結ぶ
     range: {
-      'min': 8.5,
-      'max': 21
+      'min': minVal,
+      'max': maxVal
     },
-    step: 0.5,
+    step: gap,
     tooltips: true,  // ハンドル上にツールチップを表示
     pips: {  // 特定の間隔で値のマーカーを追加
       mode: 'positions',
@@ -101,6 +108,7 @@ function render(num) {
       density: 10
     }
   });
+
 
 }
 
@@ -111,25 +119,39 @@ function sliderValue(num) {
   const chek1 = document.querySelector(`.chek1-${num}`);
   const chek2 = document.querySelector(`.chek2-${num}`);
   const chek3 = document.querySelector(`.chek3-${num}`);
+  let min;
+  let max;
 
   //スライダーを動かしたときに数値を変更する
   slider.noUiSlider.on('update', function (values) {
-    valueElement.innerHTML = values.join(' - ');
+    min = values[0];
+    max = values[1];
+    valueElement.innerHTML = min + ' - ' + max;
+
+
 
     //ラジオボタンを押したときに変更される設定
     chek1.addEventListener('change', () => {
-      valueElement.innerHTML = '12.00 - 21.00';
+      min = 8.5;
+      max = 21;
+      valueElement.innerHTML = min + '-' + max;
     });
 
     chek2.addEventListener('change', () => {
+      min = 21;
+      max = 21;
       valueElement.innerHTML = '休み';
     });
 
     chek3.addEventListener('change', () => {
+      min = 21;
+      max = 21;
       valueElement.innerHTML = '有給';
     });
   });
+
 }
+
 
 //希望シフトの登録（オブジェクトに）
 let shifts = [];
@@ -150,17 +172,57 @@ for (let i = 1; i <= lastDate; i++) {
   sliderValue(i);
 }
 
+//登録前の未記入の検索をする
+const createError = (elms, errorMessage) => {
+  //エラーメッセージの表示
+  const errorSpan = document.createElement('span');
+  errorSpan.classList.add('error');
+  errorSpan.textContent = errorMessage;
+  elms.parentNode.appendChild(errorSpan);
+}
+
 //【登録】でオブジェクトの作成・保存
 document.querySelector('#register').addEventListener('click', () => {
-  shifts = [];
-  localStorage.removeItem('shifts');
-  for (let i = 1; i <= lastDate; i++) {
-    setLocalstorage(i);
-  }
-  shifts.push({id: Username});
 
-  localStorage.setItem('shifts',JSON.stringify(shifts));
+  //未記入に対して、色を付ける
+  const errorElems = document.querySelectorAll('.error');
+  const requiredElems = document.querySelectorAll('.required');
+
+  errorElems.forEach((elem) => {
+    elem.remove();
+  });
+
+  //記入していないところを探して、表示
+  requiredElems.forEach((elem) => {
+    const elmeValue = elem.innerHTML;
+    if (elmeValue === '8.50 - 8.50') {
+      createError(elem, '記入されていません');
+    }
+  });
+
+  //エラーがあるところまで飛ぶ
+  const errorElem = document.querySelector('.error');
+  if(errorElem) {
+    const errorElemOffsetTop = errorElem.offsetTop;
+    window.scrollTo({
+      top:errorElemOffsetTop - 170,
+      behavior: 'smooth'
+    });
+
+  } else {
+
+    shifts = [];
+    localStorage.removeItem('shifts');
+    for (let i = 1; i <= lastDate; i++) {
+      setLocalstorage(i);
+    }
+    shifts.push({ id: Username });
+  
+    localStorage.setItem('shifts', JSON.stringify(shifts));
+  }
+
 });
+
 
 
 
