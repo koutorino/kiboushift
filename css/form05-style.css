@@ -35,6 +35,16 @@ span.icon {
   vertical-align: middle;
 }
 
+#addform {
+  background: rgb(221, 216, 216);
+  padding: 16px;
+  text-align: center;
+}
+
+#addform label {
+  margin: 16px;
+}
+
 button > p {
   display: inline-block;
   margin-right:16px;
@@ -43,4 +53,9 @@ button > p {
 button > span {
   line-height: 40px;
   vertical-align: middle;
+}
+
+#addform button {
+  display: block;
+  margin: 16px auto 0;
 }

@@ -1,4 +1,5 @@
 'use-strict';
+{
 
 const thTd = document.querySelector('#nameDate')
 const result = document.querySelector('#result'); 
@@ -24,7 +25,6 @@ result.appendChild(tr);
   const td = document.createElement('td');
   td.textContent = shift[shift.length - 1].id;
   tr.appendChild(td);
-  console.log(shift.length);
 
 shift.forEach((user) => {
   //td(希望時間)のループ
@@ -48,6 +48,8 @@ for (let row = 1; row < tableValue.rows.length; row++) {
   for(let col = 0; col < tableValue.rows[row].cells.length; col++) {
     tdValue.push(tableValue.rows[row].cells[col].innerHTML);
   }
+}
+
 }
 
 //mainExcell.jsへの値を送る(Excel作成)

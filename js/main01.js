@@ -1,4 +1,5 @@
 'use strict';
+{
 
 //ログイン
 document.querySelector('.button').addEventListener('click', () => {
@@ -13,12 +14,23 @@ document.querySelector('.button').addEventListener('click', () => {
 });
 
 //登録ID,パスワード
-const userDataList = [
-  { name: '太郎', password: '0000' },
-  { name: '次郎', password: '1234' },
-  { name: '三郎', password: '0000' },
-  { name: '1111', password: '2345' },
-];
+const userDataList = [];
+const users = JSON.parse(localStorage.getItem('users'));
+
+users.forEach((user) => {
+  delete user.edit;
+  delete user.del;
+  userDataList.push(user);
+});
+
+//optionタグに名前を追加
+userDataList.forEach((deta) => {
+  const select = document.querySelector('#search-id');
+  const option = document.createElement('option');
+    option.innerHTML = deta.name;
+    console.log(option);
+    select.appendChild(option);
+});
 
 //ユーザー検索
 function findUser(searchId, searchPassword) {
@@ -50,3 +62,5 @@ function findUser(searchId, searchPassword) {
 document.getElementById('edit').addEventListener('click', function () {
   window.open('file:///c%3A/Users/kk8ta/Desktop/%E3%83%89%E3%83%83%E3%83%88%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/lesseon%20folder/form05.html');
 });
+
+}

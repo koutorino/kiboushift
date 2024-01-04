@@ -1,5 +1,7 @@
 'use-strict';
 
+{
+
 //【ようこそ○○さん】
 const Username = localStorage.getItem('name');
 
@@ -211,8 +213,6 @@ document.querySelector('#register').addEventListener('click', () => {
 
   } else {
 
-    shifts = [];
-    localStorage.removeItem('shifts');
     for (let i = 1; i <= lastDate; i++) {
       setLocalstorage(i);
     }
@@ -225,7 +225,7 @@ document.querySelector('#register').addEventListener('click', () => {
 
 
 
-
+}
 
 
 

@@ -9,52 +9,26 @@
 </head>
 <body>
 
-  <table>
-    <thead>
-    </thead>
-    <tbody>
-      <tr><th colspan="2">職員名</th><th>パスワード</th><th>更新日</th></tr>
-      <tr><td class="main-icon">
-        <span class="material-symbols-outlined icon">edit_square</span>
-        <span class="material-symbols-outlined icon">delete_forever</span>
-    </td>
-     <td class="name"><p>太郎</p></td><td>111111</td><td>11/15  12:00</td></tr>
-    <tbody>
-      <tr><th colspan="2">職員名</th><th>パスワード</th><th>更新日</th></tr>
-      <tr><td class="main-icon">
-        <span class="material-symbols-outlined icon">edit_square</span>
-        <span class="material-symbols-outlined icon">delete_forever</span>
-    </td>
-     <td class="name"><p>太郎</p></td><td>111111</td><td>11/15  12:00</td></tr>
-    <tbody>
-      <tr><th colspan="2">職員名</th><th>パスワード</th><th>更新日</th></tr>
-      <tr><td class="main-icon">
-        <span class="material-symbols-outlined icon">edit_square</span>
-        <span class="material-symbols-outlined icon">delete_forever</span>
-    </td>
-     <td class="name"><p>太郎</p></td><td>111111</td><td>11/15  12:00</td></tr>
-    <tbody>
-      <tr><th colspan="2">職員名</th><th>パスワード</th><th>更新日</th></tr>
-      <tr><td class="main-icon">
-        <span class="material-symbols-outlined icon">edit_square</span>
-        <span class="material-symbols-outlined icon">delete_forever</span>
-    </td>
-     <td class="name"><p>太郎</p></td><td>111111</td><td>11/15  12:00</td></tr>
-    <tbody>
-      <tr><th colspan="2">職員名</th><th>パスワード</th><th>更新日</th></tr>
-      <tr><td class="main-icon">
-        <span class="material-symbols-outlined icon">edit_square</span>
-        <span class="material-symbols-outlined icon">delete_forever</span>
-    </td>
-     <td class="name"><p>太郎</p></td><td>111111</td><td>11/15  12:00</td></tr>
-    </tbody>
+  <table id="tbl">
+      <tr>
+        <th>職員名</th>
+        <th>パスワード</th>
+        <th>編集</th>
+        <th>削除</th>
+      </tr>
   </table>
 
-  
-  <button><p>職員の追加</p><span class="material-symbols-outlined">
-    person_add</span></button>
 
 
-  
+  <div id="addform">
+    <label>名前<input type="text" id="formName"></label>
+    <label>職員番号<input type="text" id="formNum"></label>
+
+    <button><p>職員の追加</p><span class="material-symbols-outlined">
+      person_add</span></button>
+  </div>  
+
+
+  <script src="js/main05.js"></script>
 </body>
 </html>
