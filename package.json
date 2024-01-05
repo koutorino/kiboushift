@@ -12,6 +12,7 @@
   "dependencies": {
     "file-saver": "^2.0.5",
     "jquery": "^3.7.1",
+    "nouislider": "^15.7.1",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
   }
 }

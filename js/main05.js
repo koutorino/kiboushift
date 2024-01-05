@@ -25,17 +25,15 @@ if(users !== null) {
 
 //職員の追加
 function appnedRow() {
-  const table = document.querySelector('#tbl');
-  const count = table.rows.length;
-  const row = table.insertRow(count);
   const formName = document.querySelector('#formName');
   const formNum = document.querySelector('#formNum');
-
   if (formName.value == "" || formNum.value == "") {
     alert('値を入力してから追加してください。');
     return;
   }
-
+  const table = document.querySelector('#tbl');
+  const count = table.rows.length;
+  const row = table.insertRow(count);
   const c1 = row.insertCell(0);
   const c2 = row.insertCell(1);
   const c3 = row.insertCell(2);
@@ -45,10 +43,6 @@ function appnedRow() {
   c2.innerHTML = formNum.value;
   c3.innerHTML = ' <button id="edi"><span class="material-symbols-outlined icon">edit_square</span></button>'
   c4.innerHTML = '<button id="del"><span class="material-symbols-outlined icon">delete_forever</span></button>'
-
-  formName.value = "";
-  formNum.value = "";
-
 }
 
 //職員の削除
@@ -74,18 +68,30 @@ btn.addEventListener('click', () => {
  
   appnedRow();
 
-  for (let row = 1; row < table.rows.length; row++) {
-      const user = {
-        name: tableValue.rows[row].cells[0].innerHTML,
-        password: tableValue.rows[row].cells[1].innerHTML,
-        edit: tableValue.rows[row].cells[2].innerHTML,
-        del: tableValue.rows[row].cells[3].innerHTML,
-      }
-      userValue.push(user);
+  if (formName.value == "" || formNum.value == "") {
+    return;
   }
+
+    for (let row = 1; row < table.rows.length; row++) {
+        const user = {
+          id: crypto.randomUUID(),
+          name: tableValue.rows[row].cells[0].innerHTML,
+          password: tableValue.rows[row].cells[1].innerHTML,
+          // edit: tableValue.rows[row].cells[2].innerHTML,
+          // del: tableValue.rows[row].cells[3].innerHTML,
+        }
+        userValue.push(user);
+    }
+    
+    localStorage.setItem('users', JSON.stringify(userValue));
+
+    formName.value = "";
+    formNum.value = "";
   
-  localStorage.setItem('users', JSON.stringify(userValue));
 });
+
+
+
 
 
 }

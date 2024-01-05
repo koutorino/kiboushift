@@ -2,10 +2,14 @@
 
 {
 
-//【ようこそ○○さん】
-const Username = localStorage.getItem('name');
 
-document.querySelector('#helloName').textContent = 'ようこそ' + Username + 'さん！！'
+//【ようこそ○○さん】
+let url = new URL(window.location.href);
+const addParam =  url.searchParams.get('id');
+const users = JSON.parse(localStorage.getItem('users'));
+const gest = users.find((data) => data.id === addParam);
+
+document.querySelector('#helloName').textContent = 'ようこそ' + gest.name + 'さん！！'
 
 //要素の取得
 function render(num) {
@@ -134,21 +138,24 @@ function sliderValue(num) {
 
     //ラジオボタンを押したときに変更される設定
     chek1.addEventListener('change', () => {
-      min = 8.5;
-      max = 21;
+      min = 8.50;
+      max = 21.00;
       valueElement.innerHTML = min + '-' + max;
+      slider.noUiSlider.set([min, max]);
     });
 
     chek2.addEventListener('change', () => {
-      min = 21;
-      max = 21;
+      min = 21.00;
+      max = 21.00;
       valueElement.innerHTML = '休み';
+      slider.noUiSlider.set([min, max]);
     });
 
     chek3.addEventListener('change', () => {
-      min = 21;
-      max = 21;
+      min = 21.00;
+      max = 21.00;
       valueElement.innerHTML = '有給';
+      slider.noUiSlider.set([min, max]);
     });
   });
 
@@ -217,7 +224,6 @@ document.querySelector('#register').addEventListener('click', () => {
       setLocalstorage(i);
     }
     shifts.push({ id: Username });
-  
     localStorage.setItem('shifts', JSON.stringify(shifts));
   }
 
