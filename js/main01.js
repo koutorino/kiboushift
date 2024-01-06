@@ -51,7 +51,7 @@
       //シフトデータに移動
       let url = new URL('file:///c%3A/Users/kk8ta/Desktop/%E3%83%89%E3%83%83%E3%83%88%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/lesseon%20folder/form02.html');
       url.searchParams.set('id', object.id);
-      window.open(url.href, '_blank');
+      window.open(url.href);
     }
 
     //職員編集画面への移動
