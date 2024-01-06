@@ -3,7 +3,7 @@
 {
 
   //ログイン
-  document.querySelector('.button').addEventListener('click', () => {
+  document.querySelector('.log').addEventListener('click', () => {
     const searchId = document.querySelector('#search-id').value;
     const searchPassword = document.querySelector('#search-password').value;
     findUser(searchId, searchPassword);
@@ -54,10 +54,15 @@
       window.open(url.href, '_blank');
     }
 
-
     //職員編集画面への移動
     document.getElementById('edit').addEventListener('click', function () {
       window.open('file:///c%3A/Users/kk8ta/Desktop/%E3%83%89%E3%83%83%E3%83%88%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/lesseon%20folder/form05.html');
     });
 
+    //提出確認画面への移動
+    document.getElementById('result').addEventListener('click', function () {
+      window.open('file:///c%3A/Users/kk8ta/Desktop/%E3%83%89%E3%83%83%E3%83%88%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/lesseon%20folder/form06.html');
+    });
+
+    
   }

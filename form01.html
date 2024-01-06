@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/form01-style.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 </head>
 
 <body>
@@ -18,29 +19,27 @@
     <div class="user-form">
       <div class="name">
         <p>名前</p>
-        <select id="search-id">
+        <select id="search-id" class="input">
           <option>---名前を選択してください---</option>
         </select>
       </div>
       <!-- <label>ユーザーID<input id="search-id" type="text"></label> -->
-      
+
       <label class="pass">
-        <p>パスワード</p> <input id="search-password" type="password" placeholder="職員番号を入力してください" size="24">
+        <p>パスワード</p> <input id="search-password" class="input" type="password" placeholder="職員番号を入力してください" size="24">
       </label>
-
-      <div class="button">
-        <button>ログイン</button>
-      </div>
-
       <p id="search-result"></p>
     </div>
-
-
-      <button class="ed" id="edit">職員編集</button>
-
   </div>
 
-<script src="js/main01.js"></script>
+  <button class="log">ログイン</button>
+
+  <div class="admin">
+    <button class="ed" id="edit">職員編集</button>
+    <button id="result">提出確認</button>
+  </div>
+
+  <script src="js/main01.js"></script>
 </body>
 
 </html>
