@@ -5,7 +5,6 @@
 const btn = document.querySelector('button');
 const table = document.querySelector('table');
 const users = JSON.parse(localStorage.getItem('users'));
-console.log(users);
 
 //localStorageの値を表にする。
 if(users !== null) {
@@ -13,8 +12,11 @@ if(users !== null) {
     const tr = document.createElement('tr');
     table.appendChild(tr);
     const objArray = Object.entries(user);
-    console.log(objArray);
+    objArray.splice(3,1); 
     objArray.forEach((arr) => {
+      if(arr[0] === 'id'){
+      return true;
+    }
       const td = document.createElement('td');
       td.innerHTML = arr[1];
       tr.appendChild(td);

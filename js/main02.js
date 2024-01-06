@@ -100,7 +100,7 @@ function render(num) {
 
   //スライダー作成用jquery
   noUiSlider.create(sliderUi, {
-    start: [0, 0],  // 初期の範囲値
+    start: [0, 21],  // 初期の範囲値
     connect: true,    // 範囲を色付きのバーで結ぶ
     range: {
       'min': minVal,
@@ -166,11 +166,9 @@ function sliderValue(num) {
 let shifts = [];
 function setLocalstorage(num) {
   const shift = document.querySelector(`#sliderValue${num}`).innerHTML;
-  shifts.push({
-    date: num,
-    result: shift,
-  });
+  shifts.push(shift);
 }
+
 
 //当月の最終日を取得する
 const lastDate = new Date(2023, 11 + 1, 0).getDate();
@@ -223,8 +221,19 @@ document.querySelector('#register').addEventListener('click', () => {
     for (let i = 1; i <= lastDate; i++) {
       setLocalstorage(i);
     }
-    shifts.push({ id: Username });
-    localStorage.setItem('shifts', JSON.stringify(shifts));
+
+   const saveUsers = users.map(obj => {
+    if (obj.name === gest.name) {
+      return {...obj, shift: shifts}
+    }
+    return obj;
+   });
+
+   console.log(addParam);
+    console.log(gest);
+    console.log(users);
+    console.log(saveUsers);
+    localStorage.setItem('users', JSON.stringify(saveUsers));
   }
 
 });
