@@ -6,24 +6,27 @@
   const table = document.querySelector('table');
   const users = JSON.parse(localStorage.getItem('users'));
 
-  //localStorageの値を表にする。
-  if (users !== null) {
-    users.forEach((user) => {
-      const tr = document.createElement('tr');
-      table.appendChild(tr);
-      const objArray = Object.entries(user);
-      objArray.splice(3, 1);
-      objArray.push(['del', '<button id="del"><span class="material-symbols-outlined icon">delete_forever</span></button>']);
-      console.log(objArray);
-      objArray.forEach((arr) => {
-        if (arr[0] === 'id') {
-          return true;
-        }
-        const td = document.createElement('td');
-        td.innerHTML = arr[1];
-        tr.appendChild(td);
+
+  function createNameTable() {
+    //localStorageの値を表にする。
+    if (users !== null) {
+      users.forEach((user) => {
+        const tr = document.createElement('tr');
+        table.appendChild(tr);
+        const objArray = Object.entries(user);
+        objArray.splice(3, 1);
+        objArray.push(['del', '<button id="del"><span class="material-symbols-outlined icon">delete_forever</span></button>']);
+        console.log(objArray);
+        objArray.forEach((arr) => {
+          if (arr[0] === 'id') {
+            return true;
+          }
+          const td = document.createElement('td');
+          td.innerHTML = arr[1];
+          tr.appendChild(td);
+        });
       });
-    });
+    }
   }
 
 
@@ -71,6 +74,7 @@
   }
 
 
+  createNameTable();
 
   const delbtns = document.querySelectorAll('#del');
   for (let i = 0; i < delbtns.length; i++) {
@@ -85,8 +89,8 @@
     if (formName.value == "" || formNum.value == "") {
       return;
     }
-    saveUsers()
-
+    saveUsers();
+    location.reload();
     formName.value = "";
     formNum.value = "";
   });
